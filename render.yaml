@@ -8,7 +8,7 @@ services:
 
     startCommand: >
       python -m alembic -c alembic.ini upgrade head &&
-      python -m uvicorn apps.api.app.main:app
+      python -m uvicorn server:app
       --host 0.0.0.0
       --port $PORT
 
