@@ -1,0 +1,219 @@
+{
+  "generated_at": "2026-09-21T14:44:41.702295+00:00",
+  "checks": [
+    {
+      "name": "backend-tests",
+      "command": [
+        "/workspace/lattice/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests",
+        "--junitxml=docs/verification/pytest.xml"
+      ],
+      "cwd": "/workspace/lattice",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 37.918
+    },
+    {
+      "name": "python-lint",
+      "command": [
+        "/workspace/lattice/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "apps/api",
+        "lattice_core",
+        "lattice_ai",
+        "optimizer",
+        "simulation",
+        "connectors",
+        "benchmark",
+        "tests",
+        "scripts",
+        "migrations"
+      ],
+      "cwd": "/workspace/lattice",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.034
+    },
+    {
+      "name": "frontend-tests",
+      "command": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/workspace/lattice/docs/verification/vitest.json"
+      ],
+      "cwd": "/workspace/lattice/apps/web",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 1.587
+    },
+    {
+      "name": "typescript",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/workspace/lattice/apps/web",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 3.232
+    },
+    {
+      "name": "frontend-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/workspace/lattice/apps/web",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 2.687
+    },
+    {
+      "name": "production-build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/workspace/lattice/apps/web",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 26.312
+    },
+    {
+      "name": "postgres-browser",
+      "command": [
+        "/workspace/lattice/.venv/bin/python",
+        "scripts/dev.py",
+        "--portable-postgres",
+        "--production",
+        "--fresh-db",
+        "--verify"
+      ],
+      "cwd": "/workspace/lattice",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 40.224
+    },
+    {
+      "name": "development-startup",
+      "command": [
+        "/workspace/lattice/.venv/bin/python",
+        "scripts/dev.py",
+        "--portable-postgres",
+        "--fresh-db",
+        "--startup-check"
+      ],
+      "cwd": "/workspace/lattice",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 10.935
+    },
+    {
+      "name": "benchmark-fast",
+      "command": [
+        "/workspace/lattice/.venv/bin/python",
+        "-m",
+        "benchmark.run",
+        "--mode",
+        "FAST"
+      ],
+      "cwd": "/workspace/lattice",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 6.62
+    },
+    {
+      "name": "benchmark-full",
+      "command": [
+        "/workspace/lattice/.venv/bin/python",
+        "-m",
+        "benchmark.run",
+        "--mode",
+        "FULL"
+      ],
+      "cwd": "/workspace/lattice",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 51.956
+    },
+    {
+      "name": "docker-build-compose",
+      "status": "BLOCKED",
+      "reason": "Docker CLI/daemon is not installed; no Docker build or native Compose runtime was executed."
+    },
+    {
+      "name": "backend-install",
+      "command": "uv pip install --python .venv/bin/python -r requirements.lock",
+      "status": "PASS",
+      "exit_code": 0,
+      "evidence": "Executed in this workspace on 2026-09-21; installation logs in docs/verification."
+    },
+    {
+      "name": "frontend-install",
+      "command": "npm --prefix apps/web ci",
+      "status": "PASS",
+      "exit_code": 0,
+      "evidence": "Executed in this workspace on 2026-09-21; installation logs in docs/verification."
+    },
+    {
+      "name": "portable-postgres-install",
+      "command": "npm --prefix scripts/postgres ci",
+      "status": "PASS",
+      "exit_code": 0,
+      "evidence": "Executed in this workspace on 2026-09-21; installation logs in docs/verification."
+    },
+    {
+      "name": "compose-static-validation",
+      "status": "PASS",
+      "scope": "YAML parsed; db/api/web services and Dockerfile paths validated. Does not run Docker."
+    }
+  ],
+  "tests": {
+    "backend": {
+      "tests": 101,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "frontend": {
+      "numTotalTests": 6,
+      "numPassedTests": 6,
+      "numFailedTests": 0,
+      "numPendingTests": 0
+    },
+    "playwright": {
+      "startTime": "2026-09-21T14:46:00.815Z",
+      "duration": 32628.519,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "fast": {
+      "id": "29e84e3f-eb6e-4109-8172-4b317c2e1d58",
+      "case_count": 48,
+      "passed": 48,
+      "failed": 0,
+      "duration_ms": 5596.885
+    },
+    "full": {
+      "id": "23edb995-b3a0-4df1-a6ae-a5a906035d44",
+      "case_count": 500,
+      "passed": 500,
+      "failed": 0,
+      "duration_ms": 50904.328
+    }
+  },
+  "completed_at": "2026-09-21T14:47:43.217747+00:00"
+}
