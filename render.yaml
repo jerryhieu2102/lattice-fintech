@@ -6,9 +6,8 @@ services:
 
     buildCommand: pip install -r requirements.lock
 
-    preDeployCommand: python -m alembic -c alembic.ini upgrade head
-
     startCommand: >
+      python -m alembic -c alembic.ini upgrade head &&
       uvicorn app.main:app
       --app-dir apps/api
       --host 0.0.0.0
